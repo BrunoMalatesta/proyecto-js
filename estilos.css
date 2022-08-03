@@ -299,7 +299,6 @@ input[type="submit"] {
   }
 
   .img-carrito{
-    width: 20%;
     transition: transform .2s;
   }
 
@@ -323,11 +322,9 @@ input[type="submit"] {
   transition: all .5s;
 }
 
+
+
+nav{
+  flex-direction: column;
 }
-
-
-
-
-
-
-
+}
