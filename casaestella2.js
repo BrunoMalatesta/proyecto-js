@@ -11,23 +11,23 @@ const productList = document.querySelector('#contenedor-Productos')
 let carrito = [];
 let arrayproducto = []
 
-//CARGA PAGINA CON PRODUCTOS DEL FETCH----
+/* CARGAMOS LOS PRODUCTOS EN EL HTLM MEDIANTE LOS DATOS TRAIDOS POR EL USO DE FETCH*/  
 window.addEventListener('DOMContentLoaded', async () => {
 
     productList.innerHTML = "<h1>Loading...</h1>"
 
     const data = await cargarProductos()
     arrayproducto = data;
-    renderProductos(arrayproducto)
+    imprimir_cards(arrayproducto)
 })
 
-//EVENTOS DEL BUSCADOR----------------------------
+/* BUSCADOR DE PRODUCTOS USANDO EL METODO FILTER PARA RECORRER EL ARRAY Y TOLOWERCASE PARA PASARLO TODO A MINUSCULA */  
 input.addEventListener('keyup', e => {
   const newProducto = arrayproducto.filter(prod => `${prod.nombre.toLowerCase()}`.includes(input.value.toLowerCase()))
-  renderProductos(newProducto)
+  imprimir_cards(newProducto)
 })
 
-//Llamamos a los productos en el json con un fetch en async
+/*TRAEMOS LOS OBJETOS DEL JSON MEDIANTE EL USO DE FETCH*/ 
 async function cargarProductos() {
     const response = await fetch("./productos.json")
     return await response.json()
@@ -35,29 +35,17 @@ async function cargarProductos() {
   }
 
 
-//IMPRIMIMOS LOS PRODUCTOS EN EL HTML
-  const createProducts = produ => produ.map(prod => `<div class="producto">
-  <img src=${prod.img} class="img-produ">
-  <h5>${prod.nombre}</h5>
-  <p>Precio: ${prod.precio}$</p>
-  <button id="agg-producto${prod.id}" class="boton-agg"><i class="fas fa-shopping-cart"></i></button>
-  </div>`).join(' ')
-
-  function renderProductos(produ) {
-    const itemsString = createProducts(produ)
-    productList.innerHTML = itemsString
-  }
-    
-
-
-
-/* DESDE ACA PARA ABAJO ES CODIGO VIEJO Q FUNCIONABA CON LA FUNCION IMPRIMIR CARDS*/
+/*FUNCIONES*/ 
 
 /* IMPRIMIR  LAS CARDS/PRODUCTOS EN EL HTML Y ALERTA DEL BOTON PARA AGREGAR AL CARRITO*/
-function imprimir_cards(arrayproducto){
-     arrayproducto.forEach((info) => {
+function imprimir_cards(lista_productos){
+
+  contenedorProductos.innerHTML = "";
+
+  lista_productos.forEach((info) => {
         let div = document.createElement('div');
         div.classList.add('producto')
+        div.classList.add('productoanimation')
         div.innerHTML = `
         <img src=${info.img} class="img-produ">
         <h5>${info.nombre}</h5>
@@ -65,7 +53,19 @@ function imprimir_cards(arrayproducto){
         <button id="agg-producto${info.id}" class="boton-agg"><i class="fas fa-shopping-cart"></i></button>
         `
         contenedorProductos.appendChild(div)
+
+        /* ANIMACION DE LAS CARDS CON ANIME.JS*/
+        anime({
+          targets: '.productoanimation',
+          scale: [
+            {value: .6, easing: 'easeOutSine', duration: 500},
+            {value: 1, easing: 'easeInOutQuad', duration: 1200}
+          ],
+          delay: anime.stagger(200, {grid: [14, 5], from: 'center'})
+        });
         
+
+             /*BOTON AGREGAR PRODUCTOS AL CARRITO*/
         let boton = document.getElementById(`agg-producto${info.id}`)
         
         boton.addEventListener('click', () => {
@@ -93,7 +93,7 @@ const agregarAlCarrito = (prodId , lista_productos) => {
     let agregar_producto = lista_productos.find(prod => prod.id == prodId)
     let existe = carrito.some(prod => prod.id === prodId)
 
-    existe == true ? agregar_producto.cantidad++ : carrito.push(agregar_producto); //reducimos un if a la nomenclatura de operador ternario
+    existe == true ? agregar_producto.cantidad++ : carrito.push(agregar_producto); 
 
     actualizarCarrito() 
 
@@ -101,7 +101,7 @@ const agregarAlCarrito = (prodId , lista_productos) => {
 
 
 
-/* IMPRIMIR EL MODAL DEL CARRITO EN EL HTML - BOTON ELIMINAR CON EL TACHITO*/
+/* IMPRIMIR EL MODAL DEL CARRITO EN EL HTML*/
 const actualizarCarrito = () => {
     contenedorCarrito.innerHTML = ""
     carrito.forEach((info) => {
@@ -123,6 +123,8 @@ const actualizarCarrito = () => {
     console.log(carrito)
     precioTotal.innerText = carrito.reduce((acc, info) => acc + info.cantidad * info.precio, 0)
 
+
+    /* BOTON ELIMINAR CON ICONO TACHITO*/
     let botonEliminar = document.querySelectorAll(".boton-eliminar")
 
     botonEliminar.forEach(boton => {
@@ -141,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
- /* ELIMINAR PRODUCTOS DEL CARRITO CON EL TACHITO*/
+ /*CODIGO PARA EL BOTON DE  ELIMINAR PRODUCTOS DEL CARRITO CON EL TACHITO*/
 const tachitoProducto = (e) => {
   let id = e.target.id
   let index = carrito.findIndex(producto => producto.id == id)
@@ -166,7 +168,7 @@ const tachitoProducto = (e) => {
 
 
 
-/*BOTON SIMULAR COMPRA Y SUS ALERTAS*/
+/*BOTON SIMULAR COMPRA Y SUS ALERTAS EN UN FUTURO AGG API DE MERCAFOPAGO*/
 botonComprar.addEventListener('click', () => {
     
 const swalWithBootstrapButtons = Swal.mixin({
@@ -229,16 +231,7 @@ modalCarrito.addEventListener('click', (event) => {
 });
 
 
- /* ANIMACIONES ANIME.JS PARA CARDS Y NAV*/
- anime({
-  targets: '.producto',
-  scale: [
-    {value: .6, easing: 'easeOutSine', duration: 500},
-    {value: 1, easing: 'easeInOutQuad', duration: 1200}
-  ],
-  delay: anime.stagger(200, {grid: [14, 5], from: 'center'})
-});
-
+ /* ANIMACIONES ANIME.JS NAV*/
 anime({
   targets: '.animated',
   translateX: 2000,
