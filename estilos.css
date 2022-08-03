@@ -11,14 +11,23 @@ body{
   font-family: 'Pacifico', cursive;
 }
 
+.loading{
+color: black;
+}
 
 img {
   width: 100%;
   margin-bottom: 10px;
 }
 
+.img-produ{
+  width: 100%;
+  height: 50%;
+}
+
+
 .img-carrito{
-  width: 15%;
+  width: 30px;
   transition: transform .2s;
 }
 
@@ -84,6 +93,7 @@ p {
 }
 
 .producto {
+  max-width: 250px;
   padding: 10px;
   margin: 10px;
   margin-bottom: 20px;
@@ -99,6 +109,7 @@ iframe{
   padding-top: 30px;
   padding-bottom: 30px;
 }
+
 .contactoform{
 display: flex;
 justify-content: center;

@@ -14,7 +14,7 @@ let arrayproducto = []
 /* CARGAMOS LOS PRODUCTOS EN EL HTLM MEDIANTE LOS DATOS TRAIDOS POR EL USO DE FETCH*/  
 window.addEventListener('DOMContentLoaded', async () => {
 
-    productList.innerHTML = "<h1>Loading...</h1>"
+    productList.innerHTML = "<h1 class='loading'>Cargando Productos...</h1>"
 
     const data = await cargarProductos()
     arrayproducto = data;
