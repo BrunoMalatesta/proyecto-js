@@ -94,7 +94,7 @@ const agregarAlCarrito = (prodId , lista_productos) => {
     let existe = carrito.some(prod => prod.id === prodId)
 
     existe == true ? agregar_producto.cantidad++ : carrito.push(agregar_producto); 
-
+    localStorage.setItem('carrito', JSON.stringify(carrito))
     actualizarCarrito() 
 
 };
@@ -103,6 +103,7 @@ const agregarAlCarrito = (prodId , lista_productos) => {
 
 /* IMPRIMIR EL MODAL DEL CARRITO EN EL HTML*/
 const actualizarCarrito = () => {
+    
     contenedorCarrito.innerHTML = ""
     carrito.forEach((info) => {
         const div = document.createElement('div')
@@ -148,7 +149,7 @@ const tachitoProducto = (e) => {
   let id = e.target.id
   let index = carrito.findIndex(producto => producto.id == id)
   carrito.splice(index, 1)
-  localStorage.setItem('carrito', JSON.stringify(carrito))
+  localStorage.removeItem('carrito', JSON.stringify(carrito))
   actualizarCarrito()
 
         Toastify({
