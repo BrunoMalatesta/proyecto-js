@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     imprimir_cards(arrayproducto)
 })
 
-/* BUSCADOR DE PRODUCTOS USANDO EL METODO FILTER PARA RECORRER EL ARRAY Y TOLOWERCASE PARA PASARLO TODO A MINUSCULA */  
+/* BUSCADOR DE PRODUCTOS USANDO EL METODO FILTER PARA RECORRER EL ARRAY Y tolowerCase PARA PASARLO TODO A MINUSCULA */  
 input.addEventListener('keyup', e => {
   const newProducto = arrayproducto.filter(prod => `${prod.nombre.toLowerCase()}`.includes(input.value.toLowerCase()))
   imprimir_cards(newProducto)
