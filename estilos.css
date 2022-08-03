@@ -51,7 +51,7 @@ nav {
 }
 
 .casastella{
-  width: 16%;
+  width: 10%;
   border-radius: 50%;
 }
 
@@ -283,6 +283,10 @@ input[type="submit"] {
   justify-content: flex-start;
 }
 
+.lupa{
+  width: 3%;
+padding-top: 10px;
+}
 
 @media only screen and (max-width: 600px){
   #boton-carrito {
@@ -302,9 +306,30 @@ input[type="submit"] {
     transition: transform .2s;
   }
 
+  .contacto{
+    font-size: small;
+    margin-right: 30px;
+  
+  }
+
+  .loading{
+    font-size: small;
+  
+  }
+
+  .animated{
+    padding: 0%;
+  
+  }
+
+  .lupa{
+    width: 0%;
+  
+  }
+
 
   .casastella {
-    width: 30%;
+    width: 15%;
     border-radius: 50%;
 
   }
