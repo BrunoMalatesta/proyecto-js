@@ -1,6 +1,6 @@
 const nombre = document.getElementById("name")
 const email = document.getElementById("email")
-const pass = document.getElementById("password")
+const dire = document.getElementById("adress")
 const form = document.getElementById("form")
 const parrafo = document.getElementById("warnings")
 
@@ -18,8 +18,8 @@ form.addEventListener("submit", e=>{
         warnings += `El email no es valido <br>`
         entrar = true
     }
-    if(pass.value.length < 8){
-        warnings += `La contraseña no es valida <br>`
+    if(dire.value.length < 8){
+        warnings += `La direccion no es valida <br>`
         entrar = true
     }
 
@@ -27,6 +27,9 @@ form.addEventListener("submit", e=>{
         parrafo.innerHTML = warnings
     }else{
         parrafo.innerHTML = "Enviado"
+        localStorage.setItem('nombre', JSON.stringify(nombre.value))
+        localStorage.setItem('email', JSON.stringify(email.value))
+        localStorage.setItem('direccion', JSON.stringify(dire.value))
         window.open("index2.html", "_self")
     }
 })
