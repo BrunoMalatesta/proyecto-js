@@ -155,7 +155,7 @@ let tachitoProducto = (e) => {
   let id = e.target.id
   let index = carrito.findIndex(producto => producto.id == id)
   carrito.splice(index, 1)
-  localStorage.removeItem('carrito', JSON.stringify(carrito))
+  localStorage.removeItem('carrito', JSON.stringify(carrito , id))
   actualizarCarrito()
 
         Toastify({
