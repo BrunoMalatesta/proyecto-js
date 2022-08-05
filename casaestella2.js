@@ -5,8 +5,9 @@ let contadorCarrito = document.getElementById('contadorCarrito')
 let botonVaciar = document.getElementById('vaciar-carrito')
 let botonComprar = document.getElementById('comprar-carrito')
 let botonTachito = document.getElementsByClassName('boton-eliminar')
-const input = document.querySelector('#searchInput')
-const productList = document.querySelector('#contenedor-Productos')
+let input = document.querySelector('#searchInput')
+let productList = document.querySelector('#contenedor-Productos')
+
 /* ARRAY VACIO CARRITO*/
 let carrito = [];
 let arrayproducto = []
@@ -16,20 +17,20 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     productList.innerHTML = "<h1 class='loading'>Cargando Productos...</h1>"
 
-    const data = await cargarProductos()
+    let data = await cargarProductos()
     arrayproducto = data;
     imprimir_cards(arrayproducto)
 })
 
 /* BUSCADOR DE PRODUCTOS USANDO EL METODO FILTER PARA RECORRER EL ARRAY Y tolowerCase PARA PASARLO TODO A MINUSCULA */  
 input.addEventListener('keyup', e => {
-  const newProducto = arrayproducto.filter(prod => `${prod.nombre.toLowerCase()}`.includes(input.value.toLowerCase()))
+  let newProducto = arrayproducto.filter(prod => `${prod.nombre.toLowerCase()}`.includes(input.value.toLowerCase()))
   imprimir_cards(newProducto)
 })
 
 /*TRAEMOS LOS OBJETOS DEL JSON MEDIANTE EL USO DE FETCH*/ 
 async function cargarProductos() {
-    const response = await fetch("./productos.json")
+    let response = await fetch("./productos.json")
     return await response.json()
     
   }
@@ -89,7 +90,7 @@ function imprimir_cards(lista_productos){
 
 
 /* AGG PRODUCTO AL CARRITO SIN QUE SE REPITA*/
-const agregarAlCarrito = (prodId , lista_productos) => {
+let agregarAlCarrito = (prodId , lista_productos) => {
     let agregar_producto = lista_productos.find(prod => prod.id == prodId)
     let existe = carrito.some(prod => prod.id === prodId)
 
@@ -102,7 +103,7 @@ const agregarAlCarrito = (prodId , lista_productos) => {
 
 
 /* IMPRIMIR EL MODAL DEL CARRITO EN EL HTML*/
-const actualizarCarrito = () => {
+function actualizarCarrito  () {
     
     contenedorCarrito.innerHTML = ""
     carrito.forEach((info) => {
@@ -145,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
  /*CODIGO PARA EL BOTON DE  ELIMINAR PRODUCTOS DEL CARRITO CON EL TACHITO*/
-const tachitoProducto = (e) => {
+let tachitoProducto = (e) => {
   let id = e.target.id
   let index = carrito.findIndex(producto => producto.id == id)
   carrito.splice(index, 1)
@@ -172,7 +173,7 @@ const tachitoProducto = (e) => {
 /*BOTON SIMULAR COMPRA Y SUS ALERTAS EN UN FUTURO AGG API DE MERCAFOPAGO*/
 botonComprar.addEventListener('click', () => {
     
-const swalWithBootstrapButtons = Swal.mixin({
+let swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success',
       cancelButton: 'btn btn-danger'
@@ -195,7 +196,8 @@ const swalWithBootstrapButtons = Swal.mixin({
         'se realizo la compra :)',
         'success'
       )
-    } else if (
+    }
+     else if (
       result.dismiss === Swal.DismissReason.cancel
     ) {
       swalWithBootstrapButtons.fire(
@@ -210,10 +212,10 @@ const swalWithBootstrapButtons = Swal.mixin({
 
 
 /* CODIGO DEL MODAL*/
-const contenedorModal = document.getElementsByClassName('modal-contenedor')[0]
-const botonAbrir = document.getElementById('boton-carrito')
-const botonCerrar = document.getElementById('carritoCerrar')
-const modalCarrito = document.getElementsByClassName('modal-carrito')[0]
+let contenedorModal = document.getElementsByClassName('modal-contenedor')[0]
+let botonAbrir = document.getElementById('boton-carrito')
+let botonCerrar = document.getElementById('carritoCerrar')
+let modalCarrito = document.getElementsByClassName('modal-carrito')[0]
 
 
 botonAbrir.addEventListener('click', ()=>{

@@ -53,6 +53,11 @@ nav {
 .casastella{
   width: 10%;
   border-radius: 50%;
+  transition: transform .2s;
+}
+
+.casastella:hover {
+  transform: scale(1.5); 
 }
 
 h1 {
@@ -146,14 +151,7 @@ input[type="submit"] {
   font-weight: 700;
 }
 
-.boton-agregar {
-  background-color: rgb(225, 65, 65);
-  color: white;
-  font-size: 18px;
-  font-weight: 700;
-  padding: 5px;
-  border: none;
-}
+
 .boton-comprar{
   background-color: rgb(28, 55, 190);
   color: white;
@@ -162,6 +160,7 @@ input[type="submit"] {
   padding: 5px;
   border: none;
 }
+
 
 .boton-agregar:hover {
   cursor: pointer;
@@ -266,9 +265,14 @@ input[type="submit"] {
 .contacto{
   color: #ffff;
   padding-left: 30px;
+  transition: transform .2s;
 }
 
-.form-control{
+.contacto:hover {
+  transform: scale(1.1); 
+}
+
+.form-control {
   width: 50%;
 }
 
@@ -283,10 +287,26 @@ input[type="submit"] {
   justify-content: flex-start;
 }
 
-.lupa{
+.lupa {
   width: 3%;
 padding-top: 10px;
+transition: transform .2s;
 }
+
+.lupa:hover {
+  transform: scale(1.5); 
+}
+
+.boton-agg {
+border-radius: 20px;
+background-color: #c76262;
+padding: 5px;
+transition: transform .2s;
+}
+.boton-agg:hover {
+  transform: scale(1.5); 
+}
+
 
 @media only screen and (max-width: 600px){
   #boton-carrito {
