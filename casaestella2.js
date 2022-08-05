@@ -131,10 +131,12 @@ function actualizarCarrito  () {
     botonEliminar.forEach(boton => {
         boton.addEventListener("click", tachitoProducto)
         
+        
        
     })
     
 };
+
 
 /*CARGA EL HTML Y OBTIENE EL LOCALSTORAGE DE CARRITO*/
 document.addEventListener('DOMContentLoaded', () => {
@@ -146,6 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
  /*CODIGO PARA EL BOTON DE  ELIMINAR PRODUCTOS DEL CARRITO CON EL TACHITO*/
 let tachitoProducto = (e) => {
+  let nuevacantidad = 1;
+  carrito.forEach(function(item){
+    item.cantidad = nuevacantidad;
+  })
   let id = e.target.id
   let index = carrito.findIndex(producto => producto.id == id)
   carrito.splice(index, 1)
