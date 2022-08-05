@@ -74,7 +74,6 @@ function imprimir_cards(lista_productos){
             Toastify({
                 text: "Se agrego al Carrito",
                 duration: 2000,
-                destination: "https://github.com/apvarun/toastify-js",
                 newWindow: true,
                 close: true,
                 gravity: "top",
