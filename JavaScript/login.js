@@ -1,9 +1,11 @@
-const nombre = document.getElementById("name")
-const email = document.getElementById("email")
-const dire = document.getElementById("adress")
-const form = document.getElementById("form")
-const parrafo = document.getElementById("warnings")
+/*VARIABLES*/
+let nombre = document.getElementById("name")
+let email = document.getElementById("email")
+let dire = document.getElementById("adress")
+let form = document.getElementById("form")
+let parrafo = document.getElementById("warnings")
 
+/*INTEREACUAMOS CON EL DOM DEL INICIO*/
 form.addEventListener("submit", e=>{
     e.preventDefault()
     let warnings = ""
@@ -27,10 +29,11 @@ form.addEventListener("submit", e=>{
         parrafo.innerHTML = warnings
     }else{
         parrafo.innerHTML = "Enviado"
+        /*GUARDO EN LOCAL STORAGE LOS DATOS. PARA USARLOS PARA EL ENVIO*/
         localStorage.setItem('nombre', JSON.stringify(nombre.value))
         localStorage.setItem('email', JSON.stringify(email.value))
         localStorage.setItem('direccion', JSON.stringify(dire.value))
-        window.open("index2.html", "_self")
+        window.open("./index2.html", "_self")
     }
 })
 

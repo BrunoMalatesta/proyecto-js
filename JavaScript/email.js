@@ -1,3 +1,4 @@
+/* USO DE LA API DE EMAIL.JS*/
 const btn = document.getElementById('button');
 
 document.getElementById('form')

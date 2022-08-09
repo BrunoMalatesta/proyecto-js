@@ -120,6 +120,11 @@ display: flex;
 justify-content: center;
 }
 
+textarea {
+  height: 141px;
+  width: 100%;
+}
+
 .field {
   margin-bottom: 10px;
   

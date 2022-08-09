@@ -30,7 +30,7 @@ input.addEventListener('keyup', e => {
 
 /*TRAEMOS LOS OBJETOS DEL JSON MEDIANTE EL USO DE FETCH*/ 
 async function cargarProductos() {
-    let response = await fetch("./productos.json")
+    let response = await fetch("./JavaScript/productos.json")
     return await response.json()
     
   }
